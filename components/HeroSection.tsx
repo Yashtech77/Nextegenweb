@@ -101,16 +101,7 @@ export default function HeroSection() {
             className="font-display font-black text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight mb-8"
           >
             We Build{' '}
-            <span className="relative inline-block">
-              <span className="gradient-text">Websites, SaaS &amp; AI Products</span>
-              <motion.span
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
-                className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-purple-500 to-violet-500 rounded-full origin-left"
-              />
-            </span>{' '}
-            <br className="hidden sm:block" />
+            <span className="gradient-text">Websites, SaaS &amp; AI Products</span>{' '}
             for Growing Businesses
           </motion.h1>
 
