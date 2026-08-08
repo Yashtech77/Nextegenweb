@@ -225,7 +225,7 @@ export default function AboutPage() {
       </section>
 
       {/* Process Timeline */}
-      <section className="section-padding bg-[#080E1D]">
+      <section id="process" className="section-padding bg-[#080E1D] scroll-mt-24">
         <div className="container-custom">
           <div className="text-center mb-14">
             <SectionHeading

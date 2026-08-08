@@ -1,4 +1,4 @@
-// File: C:\Users\Yash raj\Desktop\workspace\claude-demo\nextgenwebworks\app\about\page.tsx
+// File: /Users/yashsmacbook/my works/Nextegenweb/app/about/page.tsx
 import * as entry from '../../../../app/about/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

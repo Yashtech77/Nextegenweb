@@ -15,10 +15,10 @@ export default function ServicesPreview() {
       <div className="container-custom">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
           <SectionHeading
-            badge="What We Build"
-            title="Services That Drive"
-            highlight="Real Results"
-            subtitle="From rapid MVPs to enterprise platforms, we cover every stage of your product journey."
+            badge="Our Services"
+            title="What We"
+            highlight="Build"
+            subtitle="Digital products designed around your business, your users and your goals."
             align="left"
           />
           <Link

@@ -1,0 +1,179 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+enum Role {
+  CLIENT
+  ADMIN
+}
+
+enum ProjectType {
+  WEB_APP
+  MOBILE_APP
+  SAAS_PLATFORM
+  MVP
+  UI_UX_DESIGN
+  CUSTOM_SOFTWARE
+}
+
+enum ProjectStatus {
+  INQUIRY_RECEIVED
+  UNDER_REVIEW
+  QUOTED
+  ADVANCE_PENDING
+  IN_PROGRESS
+  MILESTONE_PENDING
+  REVIEW
+  COMPLETED
+  FINAL_PAYMENT_PENDING
+  DELIVERED
+  REJECTED
+}
+
+enum PaymentType {
+  ADVANCE
+  MILESTONE
+  FINAL
+}
+
+enum PaymentStatus {
+  PENDING
+  CREATED
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum MilestoneStatus {
+  PENDING
+  READY
+  IN_PROGRESS
+  COMPLETED
+  BLOCKED
+}
+
+enum FileCategory {
+  REQUIREMENT
+  REFERENCE
+  DELIVERABLE
+  REVISION
+  OTHER
+}
+
+enum UpdateVisibility {
+  CLIENT
+  INTERNAL
+}
+
+model User {
+  id           String       @id @default(cuid())
+  name         String
+  email        String       @unique
+  passwordHash String?
+  role         Role         @default(CLIENT)
+  companyName  String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  projects     Project[]    @relation("ClientProjects")
+  payments     Payment[]
+  uploads      FileUpload[] @relation("UserUploads")
+}
+
+model Project {
+  id                 String          @id @default(cuid())
+  title              String
+  description        String
+  projectType        ProjectType
+  coreFeatures       String
+  preferredTechStack String?
+  deadline           DateTime?
+  budgetRange        String?
+  referenceLink      String?
+  additionalNotes    String?
+  companyName        String?
+  status             ProjectStatus   @default(INQUIRY_RECEIVED)
+  clientId           String
+  quotationAmount    Decimal?        @db.Decimal(12, 2)
+  advanceAmount      Decimal?        @db.Decimal(12, 2)
+  remainingAmount    Decimal?        @db.Decimal(12, 2)
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  client             User            @relation("ClientProjects", fields: [clientId], references: [id], onDelete: Cascade)
+  milestones         Milestone[]
+  payments           Payment[]
+  files              FileUpload[]
+  updates            ProjectUpdate[]
+
+  @@index([clientId, status])
+  @@index([status, createdAt])
+}
+
+model Milestone {
+  id          String          @id @default(cuid())
+  projectId   String
+  title       String
+  description String
+  amount      Decimal         @db.Decimal(12, 2)
+  status      MilestoneStatus @default(PENDING)
+  dueDate     DateTime?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  project     Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  payments    Payment[]
+
+  @@index([projectId, status])
+}
+
+model Payment {
+  id                 String        @id @default(cuid())
+  projectId          String
+  userId             String
+  milestoneId        String?
+  amount             Decimal       @db.Decimal(12, 2)
+  paymentType        PaymentType
+  status             PaymentStatus @default(PENDING)
+  razorpayOrderId    String?
+  razorpayPaymentId  String?
+  razorpaySignature  String?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  project            Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user               User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  milestone          Milestone?    @relation(fields: [milestoneId], references: [id], onDelete: SetNull)
+
+  @@index([projectId, status])
+  @@index([userId, status])
+}
+
+model FileUpload {
+  id           String       @id @default(cuid())
+  projectId    String
+  fileName     String
+  fileUrl      String
+  category     FileCategory @default(OTHER)
+  uploadedById String?
+  createdAt    DateTime     @default(now())
+  project      Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  uploadedBy   User?        @relation("UserUploads", fields: [uploadedById], references: [id], onDelete: SetNull)
+
+  @@index([projectId, category])
+}
+
+model ProjectUpdate {
+  id         String           @id @default(cuid())
+  projectId  String
+  title      String
+  message    String
+  status     ProjectStatus?
+  visibility UpdateVisibility @default(CLIENT)
+  createdAt  DateTime         @default(now())
+  project    Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, createdAt])
+}

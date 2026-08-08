@@ -89,7 +89,7 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-sm font-medium mb-8"
           >
             <Star size={12} className="fill-purple-400 text-purple-400" />
-            Trusted by 20+ Innovative Startups
+            Websites · SaaS · AI Products
             <Star size={12} className="fill-purple-400 text-purple-400" />
           </motion.div>
 
@@ -100,9 +100,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-display font-black text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight mb-8"
           >
-            Building the{' '}
+            We Build{' '}
             <span className="relative inline-block">
-              <span className="gradient-text">Next Generation</span>
+              <span className="gradient-text">Websites, SaaS &amp; AI Products</span>
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -111,7 +111,7 @@ export default function HeroSection() {
               />
             </span>{' '}
             <br className="hidden sm:block" />
-            of Digital Products
+            for Growing Businesses
           </motion.h1>
 
           {/* Subtitle */}
@@ -121,8 +121,8 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-slate-400 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto mb-10"
           >
-            We help startups and businesses build fast, scalable, and beautifully designed web
-            and mobile applications. From MVPs to enterprise platforms — we ship products that win.
+            From idea to production, we help businesses turn requirements into modern, reliable
+            digital products.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -132,8 +132,8 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.45 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Link href="/contact" className="btn-primary text-base px-8 py-3.5 group">
-              Get Started Free
+            <Link href="/start-project" className="btn-primary text-base px-8 py-3.5 group">
+              Start a Project
               <ArrowRight
                 size={18}
                 className="group-hover:translate-x-1 transition-transform"
@@ -143,46 +143,6 @@ export default function HeroSection() {
               <Play size={16} className="text-purple-400 group-hover:scale-110 transition-transform" />
               View Our Work
             </Link>
-          </motion.div>
-
-          {/* Social Proof */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
-            className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-slate-500"
-          >
-            <div className="flex items-center gap-2">
-              <div className="flex -space-x-2">
-                {['SJ', 'MW', 'EC', 'DR', 'RK'].map((initials, i) => (
-                  <div
-                    key={initials}
-                    className="w-8 h-8 rounded-full border-2 border-[#050B18] flex items-center justify-center text-[10px] font-bold text-white"
-                    style={{
-                      background: [
-                        'linear-gradient(135deg, #059669, #0891b2)',
-                        'linear-gradient(135deg, #cb6de8, #6366f1)',
-                        'linear-gradient(135deg, #8b5cf6, #ec4899)',
-                        'linear-gradient(135deg, #f59e0b, #ef4444)',
-                        'linear-gradient(135deg, #06b6d4, #cb6de8)',
-                      ][i],
-                    }}
-                  >
-                    {initials}
-                  </div>
-                ))}
-              </div>
-              <span>Join 20+ happy clients</span>
-            </div>
-            <div className="hidden sm:block w-px h-4 bg-white/10" />
-            <div className="flex items-center gap-1.5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={14} className="fill-yellow-400 text-yellow-400" />
-              ))}
-              <span>5.0 avg. rating</span>
-            </div>
-            <div className="hidden sm:block w-px h-4 bg-white/10" />
-            <div>50+ projects shipped</div>
           </motion.div>
         </div>
 

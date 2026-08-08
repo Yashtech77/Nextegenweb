@@ -16,8 +16,8 @@ interface CTASectionProps {
 export default function CTASection({
   title = "Let's Build Something Amazing Together",
   subtitle = "Have an idea? We'll help you validate it, design it, and ship it. No agency fluff — just real product work.",
-  primaryCta = 'Book a Free Consultation',
-  primaryHref = '/contact',
+  primaryCta = 'Start Your Project',
+  primaryHref = '/start-project',
   secondaryCta = 'View Our Work',
   secondaryHref = '/portfolio',
 }: CTASectionProps) {
@@ -42,7 +42,7 @@ export default function CTASection({
           transition={{ duration: 0.7 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6">
+          <h2 className="mx-auto mb-6 max-w-4xl text-balance font-display text-3xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
             {title.split('Amazing')[0]}
             <span className="gradient-text">Amazing</span>
             {title.split('Amazing')[1]}
@@ -68,7 +68,7 @@ export default function CTASection({
 
           {/* Micro-copy */}
           <p className="mt-6 text-sm text-slate-600">
-            No commitment required · Free 30-min strategy call · NDA available
+            Structured intake · Quotation workflow · Client portal access
           </p>
         </motion.div>
       </div>

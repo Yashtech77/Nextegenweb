@@ -5,7 +5,8 @@ import {
   Monitor,
   Smartphone,
   Cloud,
-  Zap,
+  Bot,
+  ShoppingCart,
   Palette,
   Layers,
   Database,
@@ -19,7 +20,8 @@ const iconMap: Record<string, React.ElementType> = {
   Monitor,
   Smartphone,
   Cloud,
-  Zap,
+  Bot,
+  ShoppingCart,
   Palette,
   Layers,
   Database,
@@ -34,6 +36,7 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ service, index = 0, variant = 'compact' }: ServiceCardProps) {
   const Icon = iconMap[service.iconName] || Monitor;
+  const number = String(index + 1).padStart(2, '0');
 
   if (variant === 'full') {
     return (
@@ -43,23 +46,35 @@ export default function ServiceCard({ service, index = 0, variant = 'compact' }:
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-40px' }}
         transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-        className="glass-card p-8 group hover:border-purple-500/20 transition-all duration-300 relative overflow-hidden"
+        className={`glass-card p-8 group hover:border-purple-500/20 transition-all duration-300 relative overflow-hidden ${
+          service.emphasis ? 'ring-1 ring-purple-500/30' : ''
+        }`}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/3 to-violet-500/3 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+        <span className="absolute top-6 right-8 font-display font-black text-5xl text-white/[0.05] select-none">
+          {number}
+        </span>
 
         <div className="relative">
-          <div
-            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
-            style={{ boxShadow: `0 8px 32px rgba(203, 109, 232, 0.2)` }}
-          >
-            <Icon size={26} className="text-white" />
+          <div className="flex items-center gap-3 mb-6">
+            <div
+              className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+              style={{ boxShadow: `0 8px 32px rgba(203, 109, 232, 0.2)` }}
+            >
+              <Icon size={26} className="text-white" />
+            </div>
+            {service.emphasis && (
+              <span className="text-[11px] font-semibold uppercase tracking-wide text-purple-300 bg-purple-500/10 border border-purple-500/25 px-2.5 py-1 rounded-full">
+                Core Focus
+              </span>
+            )}
           </div>
 
           <h3 className="font-display font-bold text-xl text-white mb-3">{service.title}</h3>
           <p className="text-slate-400 leading-relaxed mb-6">{service.description}</p>
 
           <div className="mb-6">
-            <div className="text-sm font-semibold text-slate-300 mb-3">Key Features</div>
+            <div className="text-sm font-semibold text-slate-300 mb-3">What This Covers</div>
             <div className="grid grid-cols-2 gap-2">
               {service.benefits.map((benefit) => (
                 <div key={benefit} className="flex items-center gap-2 text-sm text-slate-400">
@@ -75,10 +90,10 @@ export default function ServiceCard({ service, index = 0, variant = 'compact' }:
               {service.forWho}
             </span>
             <Link
-              href="/contact"
+              href="/start-project"
               className="flex items-center gap-1 text-sm text-purple-400 font-medium hover:text-purple-300 transition-colors group/link"
             >
-              Get Started
+              {service.ctaLabel}
               <ArrowUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
@@ -88,38 +103,57 @@ export default function ServiceCard({ service, index = 0, variant = 'compact' }:
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -4 }}
-      className="glass-card-hover p-6 group relative overflow-hidden cursor-pointer"
-    >
-      {/* Gradient glow on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+    <Link href={`/services#${service.id}`} className="block h-full">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+        whileHover={{ y: -4 }}
+        className={`glass-card-hover p-6 h-full group relative overflow-hidden ${
+          service.emphasis ? 'ring-1 ring-purple-500/30' : ''
+        }`}
+      >
+        {/* Gradient glow on hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+        <span className="absolute top-4 right-5 font-display font-black text-3xl text-white/[0.05] select-none">
+          {number}
+        </span>
 
-      <div className="relative">
-        <div
-          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-        >
-          <Icon size={22} className="text-white" />
-        </div>
-
-        <h3 className="font-display font-semibold text-lg text-white mb-2">{service.title}</h3>
-        <p className="text-slate-400 text-sm leading-relaxed mb-4">{service.shortDesc}</p>
-
-        <div className="flex flex-wrap gap-1.5">
-          {service.benefits.slice(0, 2).map((benefit) => (
-            <span
-              key={benefit}
-              className="text-xs px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/[0.08] text-slate-400"
+        <div className="relative">
+          <div className="flex items-center gap-2 mb-4">
+            <div
+              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
             >
-              {benefit}
-            </span>
-          ))}
+              <Icon size={22} className="text-white" />
+            </div>
+            {service.emphasis && (
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-purple-300 bg-purple-500/10 border border-purple-500/25 px-2 py-0.5 rounded-full">
+                Core Focus
+              </span>
+            )}
+          </div>
+
+          <h3 className="font-display font-semibold text-lg text-white mb-2">{service.title}</h3>
+          <p className="text-slate-400 text-sm leading-relaxed mb-4">{service.shortDesc}</p>
+
+          <div className="flex flex-wrap gap-1.5 mb-5">
+            {service.benefits.slice(0, 4).map((benefit) => (
+              <span
+                key={benefit}
+                className="text-xs px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/[0.08] text-slate-400"
+              >
+                {benefit}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-1 text-sm text-purple-400 font-medium group-hover:text-purple-300 transition-colors">
+            {service.ctaLabel}
+            <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 }

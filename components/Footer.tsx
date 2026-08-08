@@ -30,11 +30,12 @@ export default function Footer() {
             <h3 className="text-white font-semibold text-sm mb-5">Services</h3>
             <ul className="flex flex-col gap-3">
               {[
-                { label: 'Web Development', href: '/services#web-development' },
-                { label: 'Mobile Apps', href: '/services#mobile-development' },
+                { label: 'Websites & Web Apps', href: '/services#web-development' },
                 { label: 'SaaS Products', href: '/services#saas-development' },
-                { label: 'MVP Development', href: '/services#mvp-development' },
-                { label: 'UI/UX Design', href: '/services#ui-ux-design' },
+                { label: 'AI & Automation', href: '/services#ai-automation' },
+                { label: 'E-commerce', href: '/services#ecommerce' },
+                { label: 'Mobile Apps', href: '/services#mobile-development' },
+                { label: 'UI/UX & Product Design', href: '/services#ui-ux-design' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-slate-400 hover:text-white text-sm transition-colors">

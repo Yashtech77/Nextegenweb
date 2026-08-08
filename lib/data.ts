@@ -3,11 +3,10 @@ export interface NavLink {
   label: string;
 }
 
-export interface Stat {
-  value: string;
-  label: string;
-  numericValue: number;
-  suffix: string;
+export interface FocusArea {
+  iconName: string;
+  title: string;
+  description: string;
 }
 
 export interface Service {
@@ -19,6 +18,8 @@ export interface Service {
   benefits: string[];
   forWho: string;
   gradient: string;
+  ctaLabel: string;
+  emphasis?: boolean;
 }
 
 export interface Project {
@@ -26,256 +27,139 @@ export interface Project {
   title: string;
   description: string;
   category: string;
-  techStack: string[];
-  gradientFrom: string;
-  gradientTo: string;
+  siteUrl: string;
+  previewImage: string;
+  previewAlt: string;
   accentColor: string;
   featured: boolean;
-  year: string;
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  company: string;
-  content: string;
-  rating: number;
-  initials: string;
-  avatarGradient: string;
-}
-
-export interface TeamMember {
-  name: string;
-  role: string;
-  bio: string;
-  initials: string;
-  gradient: string;
 }
 
 export const navLinks: NavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/portfolio', label: 'Work' },
+  { href: '/about#process', label: 'Process' },
   { href: '/contact', label: 'Contact' },
 ];
 
-export const stats: Stat[] = [
-  { value: '15', label: 'Projects Delivered', numericValue: 15, suffix: '' },
-  { value: '10+', label: 'Happy Clients', numericValue: 10, suffix: '+' },
-  { value: '1', label: 'Year Experience', numericValue: 1, suffix: '' },
-  { value: '99.99%', label: 'Client Satisfaction', numericValue: 99, suffix: '%' },
+export const focusAreas: FocusArea[] = [
+  {
+    iconName: 'Target',
+    title: 'Real Business Problems',
+    description: 'We build technology around actual business requirements.',
+  },
+  {
+    iconName: 'Layers',
+    title: 'Modern Digital Products',
+    description: 'From websites and web apps to SaaS and AI-powered solutions.',
+  },
+  {
+    iconName: 'HeartHandshake',
+    title: 'Direct Collaboration',
+    description: 'Work directly with the people responsible for building your product.',
+  },
+  {
+    iconName: 'Shield',
+    title: 'Built to Scale',
+    description: 'Clean, maintainable solutions designed with future growth in mind.',
+  },
 ];
 
 export const services: Service[] = [
   {
     id: 'web-development',
     iconName: 'Monitor',
-    title: 'Custom Web Development',
-    shortDesc: 'Blazing-fast, scalable web apps built with modern frameworks and cloud-native architecture.',
-    description: 'We engineer high-performance web applications using React, Next.js, and TypeScript — optimized for speed, SEO, and long-term scalability. Every line of code is written for production.',
-    benefits: ['Next.js & React', 'SSR + SSG Ready', 'SEO Optimized', 'Lightning Fast'],
-    forWho: 'Startups, SMBs & Enterprise',
+    title: 'Websites & Web Apps',
+    shortDesc: 'Modern business websites, dashboards, portals and custom web applications built for performance, usability and growth.',
+    description: 'Modern business websites, dashboards, portals and custom web applications built for performance, usability and growth.',
+    benefits: ['Business websites', 'Custom web applications', 'Admin dashboards', 'Customer portals', 'Internal business tools'],
+    forWho: 'Growing Businesses & Startups',
     gradient: 'from-purple-500 to-cyan-500',
-  },
-  {
-    id: 'mobile-development',
-    iconName: 'Smartphone',
-    title: 'Mobile App Development',
-    shortDesc: 'Native and cross-platform mobile experiences for iOS and Android that users love.',
-    description: 'From polished React Native apps to fully native iOS and Android builds, we craft mobile experiences that feel premium and perform flawlessly across all devices.',
-    benefits: ['React Native', 'iOS & Android', 'Offline Support', 'Push Notifications'],
-    forWho: 'Startups & Product Teams',
-    gradient: 'from-violet-500 to-purple-600',
+    ctaLabel: 'Explore Web Development',
   },
   {
     id: 'saas-development',
     iconName: 'Cloud',
-    title: 'SaaS Product Development',
-    shortDesc: 'End-to-end SaaS platforms with subscriptions, billing, auth, and multi-tenancy built in.',
-    description: 'We build full-stack SaaS products with everything you need: user authentication, subscription billing, dashboards, API integrations, and the infrastructure to scale from 0 to 100k users.',
-    benefits: ['Multi-tenancy', 'Stripe Billing', 'Auth & RBAC', 'Scalable APIs'],
+    title: 'SaaS Products',
+    shortDesc: 'Scalable software platforms with authentication, subscriptions, user management, permissions and powerful admin systems.',
+    description: 'Scalable software platforms with authentication, subscriptions, user management, permissions and powerful admin systems.',
+    benefits: ['Multi-tenant SaaS', 'Subscription platforms', 'RBAC systems', 'Admin panels', 'Document management', 'Business platforms'],
     forWho: 'SaaS Founders & Entrepreneurs',
     gradient: 'from-emerald-500 to-teal-500',
+    ctaLabel: 'Build a SaaS Product',
   },
   {
-    id: 'mvp-development',
-    iconName: 'Zap',
-    title: 'MVP Development',
-    shortDesc: 'Ship your startup idea in weeks, not months. From concept to live product, fast.',
-    description: 'Speed is your competitive edge. We specialize in rapid MVP development — helping you validate ideas, attract investors, and acquire early users before burning runway.',
-    benefits: ['6-8 Week Delivery', 'Investor Ready', 'Validated Stack', 'Growth Ready'],
-    forWho: 'Early-Stage Startups',
+    id: 'ai-automation',
+    iconName: 'Bot',
+    title: 'AI & Automation',
+    shortDesc: 'AI-powered products and automated workflows that help businesses reduce manual work and create better customer experiences.',
+    description: 'AI-powered products and automated workflows that help businesses reduce manual work and create better customer experiences.',
+    benefits: ['AI assistants', 'AI chatbots', 'Voice AI agents', 'AI-powered applications', 'Business automation', 'AI integrations', 'Intelligent document systems'],
+    forWho: 'Businesses Ready to Automate',
+    gradient: 'from-fuchsia-500 to-purple-600',
+    ctaLabel: 'Build an AI Solution',
+    emphasis: true,
+  },
+  {
+    id: 'ecommerce',
+    iconName: 'ShoppingCart',
+    title: 'E-commerce',
+    shortDesc: 'Custom e-commerce experiences designed to help businesses showcase products, manage orders and grow online.',
+    description: 'Custom e-commerce experiences designed to help businesses showcase products, manage orders and grow online.',
+    benefits: ['Custom online stores', 'Product management', 'Payment integration', 'Order management', 'Customer accounts', 'Admin dashboards'],
+    forWho: 'Retail & Direct-to-Consumer Brands',
     gradient: 'from-orange-500 to-amber-500',
+    ctaLabel: 'Build an E-commerce Platform',
+  },
+  {
+    id: 'mobile-development',
+    iconName: 'Smartphone',
+    title: 'Mobile Apps',
+    shortDesc: 'Modern mobile applications designed to give customers and teams a seamless experience across devices.',
+    description: 'Modern mobile applications designed to give customers and teams a seamless experience across devices.',
+    benefits: ['Customer applications', 'Business applications', 'Cross-platform apps', 'Mobile dashboards', 'API-connected applications'],
+    forWho: 'Startups & Product Teams',
+    gradient: 'from-violet-500 to-purple-600',
+    ctaLabel: 'Build a Mobile App',
   },
   {
     id: 'ui-ux-design',
     iconName: 'Palette',
-    title: 'UI/UX Design',
-    shortDesc: 'Research-driven design systems that convert visitors, delight users, and drive retention.',
-    description: 'Great software starts with great design. Our UI/UX team builds intuitive user flows, stunning interfaces, and design systems that make your product stand out in a crowded market.',
-    benefits: ['User Research', 'Figma Prototypes', 'Design System', 'A/B Optimized'],
+    title: 'UI/UX & Product Design',
+    shortDesc: 'From Figma concepts to production-ready interfaces, we design digital experiences that are clear, intuitive and built around users.',
+    description: 'From Figma concepts to production-ready interfaces, we design digital experiences that are clear, intuitive and built around users.',
+    benefits: ['UI/UX design', 'Product design', 'Design systems', 'Figma prototypes', 'Dashboard design', 'Responsive interfaces'],
     forWho: 'Product Teams & Startups',
     gradient: 'from-pink-500 to-rose-500',
-  },
-  {
-    id: 'product-engineering',
-    iconName: 'Layers',
-    title: 'Product Engineering',
-    shortDesc: 'Full-lifecycle product engineering from architecture to deployment and scaling.',
-    description: 'For teams that need a complete product partner. We handle architecture, backend, frontend, DevOps, and ongoing engineering — so you can focus on growth and customers.',
-    benefits: ['Full-Stack', 'DevOps & CI/CD', 'API Design', 'Ongoing Support'],
-    forWho: 'Growth-Stage Companies',
-    gradient: 'from-cyan-500 to-purple-600',
-  },
-  {
-    id: 'backend-development',
-    iconName: 'Database',
-    title: 'Backend & API Development',
-    shortDesc: 'Rock-solid APIs, microservices, and database architecture built for scale.',
-    description: 'We build RESTful and GraphQL APIs, microservices architectures, and data pipelines that can handle massive scale. PostgreSQL, Redis, and cloud-native — done right.',
-    benefits: ['REST & GraphQL', 'Microservices', 'PostgreSQL & Redis', 'High Availability'],
-    forWho: 'Tech Teams & Scale-ups',
-    gradient: 'from-slate-400 to-slate-600',
-  },
-  {
-    id: 'maintenance-scaling',
-    iconName: 'Wrench',
-    title: 'Maintenance & Scaling',
-    shortDesc: 'Keep your product healthy, performant, and ready to handle whatever growth throws at it.',
-    description: 'Launching is just the beginning. We provide ongoing engineering support, performance monitoring, security audits, and scaling strategies to keep your product running at its best.',
-    benefits: ['24/7 Monitoring', 'Performance Audits', 'Security Reviews', 'Scaling Strategy'],
-    forWho: 'Existing Product Owners',
-    gradient: 'from-indigo-500 to-violet-500',
+    ctaLabel: 'Design Your Product',
   },
 ];
 
 export const projects: Project[] = [
   {
-    id: 'healthtrack-pro',
-    title: 'HealthTrack Pro',
-    description: 'A comprehensive healthcare SaaS platform enabling clinics to manage patient records, appointments, billing, and telemedicine — all in one HIPAA-compliant dashboard.',
-    category: 'Healthcare',
-    techStack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Stripe'],
-    gradientFrom: '#059669',
-    gradientTo: '#0891b2',
-    accentColor: '#10b981',
+    id: 'pinnacle-finance-advisors',
+    title: 'Pinnacle Finance Advisors',
+    description:
+      'A polished website for a financial advisory firm, built to present wealth management and financial planning services with clarity, trust, and a straightforward path to connect.',
+    category: 'Financial Services',
+    siteUrl: 'https://www.pinnaclefinanceadvisors.com/',
+    previewImage: '/pinnacle-finance-advisors-preview.png',
+    previewAlt: 'Homepage preview of the Pinnacle Finance Advisors website',
+    accentColor: '#67d5d1',
     featured: true,
-    year: '2024',
   },
   {
-    id: 'finflow',
-    title: 'FinFlow',
-    description: 'A real-time fintech dashboard for financial advisors — featuring portfolio analytics, automated reporting, client management, and secure payment processing.',
-    category: 'Fintech',
-    techStack: ['React', 'Node.js', 'GraphQL', 'Redis', 'Plaid API'],
-    gradientFrom: '#1d4ed8',
-    gradientTo: '#4f46e5',
-    accentColor: '#cb6de8',
+    id: 'gurbaani-living',
+    title: 'Gurbaani Living',
+    description:
+      'A premium PG accommodation website that showcases locations, amenities, and room options for students and working professionals, with clear calls to book a visit or explore rooms.',
+    category: 'PG Accommodation',
+    siteUrl: 'https://gurbaaniliving.com/',
+    previewImage: '/gurbaani-living-preview.png',
+    previewAlt: 'Homepage preview of the Gurbaani Living website',
+    accentColor: '#73dfcf',
     featured: true,
-    year: '2024',
-  },
-  {
-    id: 'shopsphere',
-    title: 'ShopSphere',
-    description: 'A headless e-commerce platform with AI-powered product recommendations, dynamic pricing, multi-vendor support, and a blazing-fast storefront built on Next.js.',
-    category: 'E-commerce',
-    techStack: ['Next.js', 'Tailwind', 'Sanity CMS', 'Stripe', 'Vercel'],
-    gradientFrom: '#9333ea',
-    gradientTo: '#ec4899',
-    accentColor: '#a855f7',
-    featured: true,
-    year: '2023',
-  },
-  {
-    id: 'learnpath',
-    title: 'LearnPath',
-    description: 'An EdTech startup MVP that connects learners with expert instructors through live sessions, structured learning paths, progress tracking, and community features.',
-    category: 'Education',
-    techStack: ['React Native', 'Firebase', 'WebRTC', 'Node.js', 'MongoDB'],
-    gradientFrom: '#d97706',
-    gradientTo: '#ea580c',
-    accentColor: '#f59e0b',
-    featured: false,
-    year: '2023',
-  },
-  {
-    id: 'taskmaster',
-    title: 'TaskMaster',
-    description: 'A project management SaaS for distributed engineering teams with sprint planning, time tracking, Slack integration, and AI-generated standup summaries.',
-    category: 'SaaS',
-    techStack: ['Next.js', 'tRPC', 'PlanetScale', 'Pusher', 'OpenAI'],
-    gradientFrom: '#0369a1',
-    gradientTo: '#0d9488',
-    accentColor: '#06b6d4',
-    featured: false,
-    year: '2024',
-  },
-  {
-    id: 'mobilebank',
-    title: 'MobileBank',
-    description: 'A mobile banking app MVP for a neobank startup — featuring biometric auth, real-time transactions, virtual cards, spending analytics, and peer-to-peer transfers.',
-    category: 'Mobile App',
-    techStack: ['React Native', 'TypeScript', 'Plaid', 'AWS Amplify', 'Redux'],
-    gradientFrom: '#1e1b4b',
-    gradientTo: '#312e81',
-    accentColor: '#6366f1',
-    featured: false,
-    year: '2023',
-  },
-];
-
-export const testimonials: Testimonial[] = [
-  {
-    id: '1',
-    name: 'Sarah Johnson',
-    role: 'CTO',
-    company: 'HealthTech Ventures',
-    content: 'NextGenWebWorks transformed our vision into a world-class platform. They delivered our HIPAA-compliant SaaS ahead of schedule and the quality blew our entire team away. They feel like true product partners, not just a dev shop.',
-    rating: 5,
-    initials: 'SJ',
-    avatarGradient: 'from-emerald-400 to-teal-600',
-  },
-  {
-    id: '2',
-    name: 'Marcus Williams',
-    role: 'Founder & CEO',
-    company: 'FinFlow',
-    content: 'We went from idea to funded product in under 3 months. The team understood fintech nuances immediately — the architecture they built scales beautifully. We raised our seed round with the MVP they built.',
-    rating: 5,
-    initials: 'MW',
-    avatarGradient: 'from-purple-400 to-indigo-600',
-  },
-  {
-    id: '3',
-    name: 'Emily Chen',
-    role: 'VP of Product',
-    company: 'ShopSphere',
-    content: 'The UI/UX work alone was worth every penny. Our conversion rate jumped 40% after launch. They brought design thinking and engineering excellence that I haven\'t seen in other agencies. Highly recommend for any serious product.',
-    rating: 5,
-    initials: 'EC',
-    avatarGradient: 'from-violet-400 to-purple-600',
-  },
-  {
-    id: '4',
-    name: 'David Rodriguez',
-    role: 'Founder',
-    company: 'LearnPath',
-    content: 'As a non-technical founder, I needed a team I could trust completely. NextGenWebWorks was transparent, communicative, and delivered exactly what they promised. Our app launched to 500 users on day one.',
-    rating: 5,
-    initials: 'DR',
-    avatarGradient: 'from-orange-400 to-red-500',
-  },
-  {
-    id: '5',
-    name: 'Rachel Kim',
-    role: 'COO',
-    company: 'TaskMaster SaaS',
-    content: 'The speed and quality of their work is remarkable. They integrated AI features we didn\'t even know were possible on our timeline. Our enterprise clients are constantly complimenting the product\'s polish.',
-    rating: 5,
-    initials: 'RK',
-    avatarGradient: 'from-cyan-400 to-purple-500',
   },
 ];
 
@@ -310,15 +194,6 @@ export const whyChooseUs = [
     title: 'Long-Term Partnership',
     description: 'We don\'t disappear after launch. We offer ongoing support, maintenance, and scaling — growing with your product.',
   },
-];
-
-export const clientLogos = [
-  { name: 'HealthTech', abbr: 'HT' },
-  { name: 'FinFlow', abbr: 'FF' },
-  { name: 'ShopSphere', abbr: 'SS' },
-  { name: 'LearnPath', abbr: 'LP' },
-  { name: 'TaskMaster', abbr: 'TM' },
-  { name: 'MobileBank', abbr: 'MB' },
 ];
 
 export const processSteps = [

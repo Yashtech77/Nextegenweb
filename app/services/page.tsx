@@ -11,11 +11,11 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Services | NextGenWebWorks',
   description:
-    'Explore our full range of software development services — web development, mobile apps, SaaS products, MVP development, UI/UX design, and more. Built for startups and growing businesses.',
+    'Websites & web apps, SaaS products, AI & automation, e-commerce, mobile apps, and UI/UX design — built for growing businesses and startups.',
   openGraph: {
     title: 'Software Development Services | NextGenWebWorks',
     description:
-      'Custom web apps, mobile apps, SaaS products, and MVP development for startups and businesses. Enterprise-quality, startup-friendly.',
+      'Websites, SaaS platforms, AI & automation, e-commerce and mobile apps — designed and built for growing businesses.',
   },
 };
 
@@ -33,9 +33,8 @@ export default function ServicesPage() {
     <>
       <PageHeader
         badge="Our Services"
-        title="Everything You Need to"
-        highlight="Ship Great Software"
-        subtitle="From early-stage MVPs to complex enterprise platforms, we provide end-to-end software development services with exceptional design and engineering quality."
+        title="What We Build"
+        subtitle="Digital products designed around your business, your users and your goals — from websites and SaaS to AI-powered automation."
         breadcrumb={[{ label: 'Services', href: '/services' }]}
       />
 
@@ -45,8 +44,8 @@ export default function ServicesPage() {
           <div className="text-center mb-14">
             <SectionHeading
               badge="What We Offer"
-              title="Complete"
-              highlight="Software Services"
+              title="Software Development,"
+              highlight="SaaS & AI"
               subtitle="Whether you need a single feature or a full product, we have the expertise to deliver."
             />
           </div>
@@ -89,7 +88,7 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="mt-8">
-                  <Link href="/contact" className="btn-primary">
+                  <Link href="/start-project" className="btn-primary">
                     Start a Project
                     <ArrowRight size={16} />
                   </Link>
@@ -243,7 +242,7 @@ export default function ServicesPage() {
                       ))}
                     </ul>
 
-                    <Link href="/contact" className={tier.featured ? 'btn-primary' : 'btn-secondary'}>
+                    <Link href="/start-project" className={tier.featured ? 'btn-primary' : 'btn-secondary'}>
                       {tier.cta}
                       <ArrowRight size={15} />
                     </Link>
@@ -255,7 +254,7 @@ export default function ServicesPage() {
 
           <div className="text-center mt-10 text-slate-500 text-sm">
             All engagements include code quality reviews, documentation, and post-launch support.{' '}
-            <Link href="/contact" className="text-purple-400 hover:text-purple-300 transition-colors">
+            <Link href="/start-project" className="text-purple-400 hover:text-purple-300 transition-colors">
               Talk to us about custom arrangements →
             </Link>
           </div>
@@ -264,8 +263,8 @@ export default function ServicesPage() {
 
       <CTASection
         title="Ready to Start Building?"
-        subtitle="Book a free consultation. We'll learn about your project and show you exactly how we'd approach it — no commitment needed."
-        primaryCta="Book Free Consultation"
+        subtitle="Share your scope, budget, and delivery goals. We will review the project, prepare quotation, and move you into a premium managed workflow."
+        primaryCta="Submit Your Requirement"
         secondaryCta="View Our Portfolio"
         secondaryHref="/portfolio"
       />

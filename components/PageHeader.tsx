@@ -88,7 +88,7 @@ export default function PageHeader({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight tracking-tight mb-6"
+          className="mx-auto mb-6 max-w-4xl text-balance font-display text-3xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
         >
           {renderTitle()}
         </motion.h1>

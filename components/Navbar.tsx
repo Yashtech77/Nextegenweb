@@ -77,9 +77,12 @@ export default function Navbar() {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-4">
-            <Link href="/contact" className="btn-primary text-sm py-2.5 px-5">
-              Get Started
+          <div className="hidden md:flex items-center gap-3">
+            <Link href="/client/login" className="btn-secondary text-sm py-2.5 px-5">
+              Client Login
+            </Link>
+            <Link href="/start-project" className="btn-primary text-sm py-2.5 px-5">
+              Start Your Project
             </Link>
           </div>
 
@@ -155,9 +158,12 @@ export default function Navbar() {
                 ))}
               </nav>
 
-              <div className="p-6 border-t border-white/[0.06]">
-                <Link href="/contact" className="btn-primary w-full justify-center">
-                  Get Started →
+              <div className="p-6 border-t border-white/[0.06] space-y-3">
+                <Link href="/start-project" className="btn-primary w-full justify-center">
+                  Start Your Project
+                </Link>
+                <Link href="/client/login" className="btn-secondary w-full justify-center">
+                  Client Login
                 </Link>
               </div>
             </motion.div>

@@ -4,13 +4,13 @@ import CTASection from '@/components/CTASection';
 import PortfolioGrid from '@/components/PortfolioGrid';
 
 export const metadata: Metadata = {
-  title: 'Portfolio | NextGenWebWorks',
+  title: 'Selected Work | NextGenWebWorks',
   description:
-    'Explore our portfolio of web apps, mobile apps, SaaS products, and startup MVPs. Real products built for real companies — see what we\'ve shipped.',
+    'A selection of real websites designed and developed by NextGenWebWorks for businesses and organizations.',
   openGraph: {
-    title: 'Our Work & Portfolio | NextGenWebWorks',
+    title: 'Selected Work | NextGenWebWorks',
     description:
-      'Browse our portfolio of digital products — healthcare SaaS, fintech dashboards, e-commerce platforms, and more.',
+      'Websites we\'ve actually built for real businesses and organizations.',
   },
 };
 
@@ -18,10 +18,10 @@ export default function PortfolioPage() {
   return (
     <>
       <PageHeader
-        badge="Our Portfolio"
-        title="Products We've"
-        highlight="Proudly Shipped"
-        subtitle="Every project here represents a real challenge solved and a business moved forward. These aren't concepts — they're live products used by real people."
+        badge="Selected Work"
+        title="Websites We've Built"
+        highlight="Built"
+        subtitle="A selection of real digital projects designed and developed for businesses and organizations."
         breadcrumb={[{ label: 'Portfolio', href: '/portfolio' }]}
       />
 

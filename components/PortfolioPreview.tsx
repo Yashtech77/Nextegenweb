@@ -14,10 +14,10 @@ export default function PortfolioPreview() {
       <div className="container-custom">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
           <SectionHeading
-            badge="Our Work"
-            title="Products We've"
-            highlight="Shipped"
-            subtitle="A selection of digital products we've built for startups and growing companies."
+            badge="Selected Work"
+            title="Websites We've Built"
+            highlight="Built"
+            subtitle="A selection of real digital projects designed and developed for businesses and organizations."
             align="left"
           />
           <Link
@@ -29,7 +29,7 @@ export default function PortfolioPreview() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
           {featuredProjects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
